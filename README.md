@@ -1,45 +1,58 @@
-# Hydrogen template: Skeleton
+# Revolucionz Store
 
-Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [Remix](https://remix.run/), Shopify’s full stack web framework. This template contains a **minimal setup** of components, queries and tooling to get started with Hydrogen.
+Storefront headless de **Revolucionz**, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
 
-[Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
-[Get familiar with Remix](https://remix.run/docs/en/v1)
+## Stack principal
 
-## What's included
-
-- Remix
-- Hydrogen
-- Oxygen
+- Shopify Hydrogen
+- Remix / React Router
+- React 18
+- TypeScript
 - Vite
-- Shopify CLI
-- ESLint
-- Prettier
-- GraphQL generator
-- TypeScript and JavaScript flavors
-- Minimal setup of components and routes
+- Tailwind CSS
 
-## Getting started
+## Requisitos
 
-**Requirements:**
+- Node.js `^22 || ^24`
+- pnpm (recomendado) o npm
+- Shopify CLI configurado para tu tienda
 
-- Node.js version 18.0.0 or higher
+## Instalación
 
 ```bash
-npm create @shopify/hydrogen@latest
+pnpm install
 ```
 
-## Building for production
+## Desarrollo local
 
 ```bash
-npm run build
+pnpm dev
 ```
 
-## Local development
+## Build de producción
 
 ```bash
-npm run dev
+pnpm build
 ```
 
-## Setup for using Customer Account API (`/account` section)
+## Scripts útiles
 
-Follow step 1 and 2 of <https://shopify.dev/docs/custom-storefronts/building-with-the-customer-account-api/hydrogen#step-1-set-up-a-public-domain-for-local-development>
+- `pnpm dev`: inicia entorno local con codegen.
+- `pnpm build`: compila para producción.
+- `pnpm preview`: levanta el build local.
+- `pnpm lint`: ejecuta linting.
+- `pnpm typecheck`: valida tipos de TypeScript.
+- `pnpm codegen`: ejecuta codegen de Shopify + typegen de rutas.
+
+## Estructura general
+
+- `app/components`: componentes UI reutilizables.
+- `app/routes`: rutas y páginas del storefront.
+- `app/assets`: recursos visuales (logos, carruseles, productos).
+- `app/styles`: estilos globales.
+
+## Notas
+
+- Este proyecto usa flujo headless con Shopify, por lo que requiere credenciales y configuración de entorno para conectarse al storefront.
+- Para Account API (`/account`), sigue la guía oficial de Hydrogen:
+  <https://shopify.dev/docs/custom-storefronts/building-with-the-customer-account-api/hydrogen#step-1-set-up-a-public-domain-for-local-development>
