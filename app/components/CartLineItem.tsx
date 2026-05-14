@@ -5,6 +5,7 @@ import {useVariantUrl} from '~/lib/variants';
 import {Link} from 'react-router';
 import {ProductPrice} from './ProductPrice';
 import {useAside} from './Aside';
+import {Minus, Plus, Trash2} from 'lucide-react';
 import type {
   CartApiQueryFragment,
   CartLineFragment,
@@ -118,7 +119,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
           name="decrease-quantity"
           value={prevQuantity}
         >
-          <span>&#8722; </span>
+          <Minus size={14} />
         </button>
       </CartLineUpdateButton>
       &nbsp;
@@ -129,7 +130,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
           value={nextQuantity}
           disabled={!!isOptimistic}
         >
-          <span>&#43;</span>
+          <Plus size={14} />
         </button>
       </CartLineUpdateButton>
       &nbsp;
@@ -158,7 +159,7 @@ function CartLineRemoveButton({
       inputs={{lineIds}}
     >
       <button disabled={disabled} type="submit">
-        Remove
+        <Trash2 size={14} style={{marginRight: 4}} /> Remove
       </button>
     </CartForm>
   );

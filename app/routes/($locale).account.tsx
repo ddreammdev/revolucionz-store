@@ -64,13 +64,15 @@ function AccountMenu() {
     isPending: boolean;
   }) {
     return {
-      fontWeight: isActive ? 'bold' : undefined,
-      color: isPending ? 'grey' : 'black',
+      fontWeight: isActive ? '600' : undefined,
+      color: isPending
+        ? 'var(--page-text-secondary)'
+        : 'var(--page-text)',
     };
   }
 
   return (
-    <nav role="navigation">
+    <nav className="account-nav">
       <NavLink to="/account/orders" style={isActiveStyle}>
         Orders &nbsp;
       </NavLink>

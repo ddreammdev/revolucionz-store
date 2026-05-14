@@ -1,4 +1,4 @@
-import {Suspense} from 'react';
+import {Suspense, useRef, useEffect, useState} from 'react';
 import {Await, NavLink, useAsyncValue} from 'react-router';
 import {
   type CartViewPayload,
@@ -6,8 +6,12 @@ import {
   useOptimisticCart,
 } from '@shopify/hydrogen';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
+import type Lenis from 'lenis';
 import {useAside} from '~/components/Aside';
 import {ThemeToggle} from '~/components/ThemeToggle';
+import {useLenis} from '~/lib/smooth-scroll';
+import logoSvg from 'app/assets/logo-revolucionz.svg';
+import {Search, ShoppingCart, User, Menu} from 'lucide-react';
 
 interface HeaderProps {
   header: HeaderQuery;
@@ -24,74 +28,84 @@ export function Header({
   cart,
   publicStoreDomain,
 }: HeaderProps) {
-  const {shop, menu} = header;
+  const {shop} = header;
+  const headerRef = useRef<HTMLElement>(null);
+  const [hidden, setHidden] = useState(false);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    const l = lenis;
+    if (!l) return;
+    const VELOCITY_THRESHOLD = 15;
+
+    function onLenisScroll({scroll, velocity, direction}: {scroll: number; velocity: number; direction: number}) {
+      if (direction === 1 && scroll > 80 && velocity > VELOCITY_THRESHOLD) {
+        setHidden(true);
+      } else if (direction === -1) {
+        setHidden(false);
+      }
+    }
+
+    l.on('scroll', onLenisScroll);
+    return () => l.off('scroll', onLenisScroll);
+  }, [lenis]);
+
   return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+    <header
+      ref={headerRef}
+      className={`header${hidden ? ' header-hidden' : ''}`}
+    >
+      <div className="header-inner">
+        <NavLink prefetch="intent" to="/" className="header-logo" end>
+          <img src={logoSvg} alt="Revolucionz" />
+        </NavLink>
+        <HeaderMenu viewport="desktop" />
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </div>
     </header>
   );
 }
 
+function scrollToTop(lenis: Lenis | null) {
+  if (lenis) lenis.scrollTo(0);
+}
+
+function scrollToProductos(lenis: Lenis | null) {
+  if (lenis) lenis.scrollTo('#productos');
+}
+
 export function HeaderMenu({
-  menu,
-  primaryDomainUrl,
   viewport,
-  publicStoreDomain,
 }: {
-  menu: HeaderProps['header']['menu'];
-  primaryDomainUrl: HeaderProps['header']['shop']['primaryDomain']['url'];
+  menu?: HeaderProps['header']['menu'];
+  primaryDomainUrl?: HeaderProps['header']['shop']['primaryDomain']['url'];
   viewport: Viewport;
-  publicStoreDomain: HeaderProps['publicStoreDomain'];
+  publicStoreDomain?: HeaderProps['publicStoreDomain'];
 }) {
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
+  const lenis = useLenis();
 
   return (
     <nav className={className} role="navigation">
-      {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={close}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-        >
-          Home
-        </NavLink>
-      )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
-        if (!item.url) return null;
-
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
+      <button
+        className="header-menu-item reset"
+        onClick={() => {
+          scrollToTop(lenis);
+          close();
+        }}
+      >
+        Inicio
+      </button>
+      <button
+        className="header-menu-item reset"
+        onClick={() => {
+          scrollToProductos(lenis);
+          close();
+        }}
+      >
+        Productos
+      </button>
     </nav>
   );
 }
@@ -105,9 +119,11 @@ function HeaderCtas({
       <ThemeToggle />
       <HeaderMenuMobileToggle />
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+        <Suspense fallback={<User size={20} />}>
+          <Await resolve={isLoggedIn} errorElement={<User size={20} />}>
+            {(isLoggedIn) =>
+              isLoggedIn ? <User size={20} /> : <User size={20} />
+            }
           </Await>
         </Suspense>
       </NavLink>
@@ -124,7 +140,7 @@ function HeaderMenuMobileToggle() {
       className="header-menu-mobile-toggle reset"
       onClick={() => open('mobile')}
     >
-      <h3>☰</h3>
+      <Menu size={20} />
     </button>
   );
 }
@@ -133,7 +149,7 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      <Search size={20} />
     </button>
   );
 }
@@ -155,8 +171,10 @@ function CartBadge({count}: {count: number}) {
           url: window.location.href || '',
         } as CartViewPayload);
       }}
+      className="cart-badge"
     >
-      Cart <span aria-label={`(items: ${count})`}>{count}</span>
+      <ShoppingCart size={20} />
+      {count > 0 && <span>{count}</span>}
     </a>
   );
 }
@@ -177,48 +195,6 @@ function CartBanner() {
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
 
-const FALLBACK_HEADER_MENU = {
-  id: 'gid://shopify/Menu/199655587896',
-  items: [
-    {
-      id: 'gid://shopify/MenuItem/461609500728',
-      resourceId: null,
-      tags: [],
-      title: 'Collections',
-      type: 'HTTP',
-      url: '/collections',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609533496',
-      resourceId: null,
-      tags: [],
-      title: 'Blog',
-      type: 'HTTP',
-      url: '/blogs/journal',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609566264',
-      resourceId: null,
-      tags: [],
-      title: 'Policies',
-      type: 'HTTP',
-      url: '/policies',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609599032',
-      resourceId: 'gid://shopify/Page/92591030328',
-      tags: [],
-      title: 'About',
-      type: 'PAGE',
-      url: '/pages/about',
-      items: [],
-    },
-  ],
-};
-
 function activeLinkStyle({
   isActive,
   isPending,
@@ -227,7 +203,7 @@ function activeLinkStyle({
   isPending: boolean;
 }) {
   return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
+    fontWeight: isActive ? '600' : undefined,
+    color: isPending ? 'var(--page-text-secondary)' : 'var(--page-text)',
   };
 }

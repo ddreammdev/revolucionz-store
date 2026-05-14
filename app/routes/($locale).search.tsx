@@ -14,7 +14,7 @@ import type {
 } from 'storefrontapi.generated';
 
 export const meta: Route.MetaFunction = () => {
-  return [{title: `Hydrogen | Search`}];
+  return [{title: `RevolucionZ | Search`}];
 };
 
 export async function loader({request, context}: Route.LoaderArgs) {
@@ -58,7 +58,7 @@ export default function SearchPage() {
           </>
         )}
       </SearchForm>
-      {error && <p style={{color: 'red'}}>{error}</p>}
+      {error && <p style={{color: 'var(--color-danger-500)'}}>{error}</p>}
       {!term || !result?.total ? (
         <SearchResults.Empty />
       ) : (

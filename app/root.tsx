@@ -13,7 +13,7 @@ import {
 import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
-import tailwindCss from './styles/tailwind.css?url';
+import appCss from './styles/app.css?url';
 import {PageLayout} from './components/PageLayout';
 
 export type RootLoader = typeof loader;
@@ -149,7 +149,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="color-scheme" content="light dark" />
-        <link rel="stylesheet" href={tailwindCss}></link>
+        <link rel="stylesheet" href={appCss}></link>
         <Meta />
         <Links />
         <script

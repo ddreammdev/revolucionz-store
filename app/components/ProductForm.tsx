@@ -53,9 +53,6 @@ export function ProductForm({
                       replace
                       to={`/products/${handle}?${variantUriQuery}`}
                       style={{
-                        border: selected
-                          ? '1px solid black'
-                          : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
                       }}
                     >
@@ -72,13 +69,10 @@ export function ProductForm({
                     <button
                       type="button"
                       className={`product-options-item${
-                        exists && !selected ? ' link' : ''
-                      }`}
+                        selected ? ' selected' : ''
+                      }${exists && !selected ? ' link' : ''}`}
                       key={option.name + name}
                       style={{
-                        border: selected
-                          ? '1px solid black'
-                          : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
                       }}
                       disabled={!exists}
