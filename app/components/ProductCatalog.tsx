@@ -1,57 +1,8 @@
 import {useState, useMemo} from 'react';
+import {Link} from 'react-router';
 import {Search, SlidersHorizontal} from 'lucide-react';
 
-import imgAdelgazate from '~/assets/products/adelgazate.avif';
-import imgColageno from '~/assets/products/colageno.avif';
-import imgDetoxZ from '~/assets/products/detox-z.avif';
-import imgDivaz from '~/assets/products/divaz.avif';
-import imgEroz from '~/assets/products/eroz.avif';
-import imgGlutationDp from '~/assets/products/glutation-doypack.avif';
-import imgGlutation from '~/assets/products/glutation.avif';
-import imgHepaZ from '~/assets/products/hepa-z.avif';
-import imgRevitalizateDp from '~/assets/products/revitalizate-doypack.avif';
-
-const products = [
-  {
-    id: 1,
-    name: 'Adelgazate',
-    img: imgAdelgazate,
-    price: 29.99,
-    category: 'Quemadores',
-  },
-  {id: 2, name: 'Colágeno', img: imgColageno, price: 34.99, category: 'Salud'},
-  {
-    id: 3,
-    name: 'Detox-Z',
-    img: imgDetoxZ,
-    price: 27.99,
-    category: 'Quemadores',
-  },
-  {id: 4, name: 'Divaz', img: imgDivaz, price: 31.99, category: 'Vitaminas'},
-  {id: 5, name: 'Eroz', img: imgEroz, price: 36.99, category: 'Pre-Entreno'},
-  {
-    id: 6,
-    name: 'Glutation Doypack',
-    img: imgGlutationDp,
-    price: 39.99,
-    category: 'Salud',
-  },
-  {
-    id: 7,
-    name: 'Glutation',
-    img: imgGlutation,
-    price: 37.99,
-    category: 'Salud',
-  },
-  {id: 8, name: 'Hepa-Z', img: imgHepaZ, price: 28.99, category: 'Salud'},
-  {
-    id: 9,
-    name: 'Revitalizate Doypack',
-    img: imgRevitalizateDp,
-    price: 32.99,
-    category: 'Vitaminas',
-  },
-];
+import {products} from '~/lib/product-data';
 
 const categories = ['Quemadores', 'Salud', 'Vitaminas', 'Pre-Entreno'];
 
@@ -134,11 +85,11 @@ export function ProductCatalog() {
           ) : (
             <div className="catalog-grid">
               {filtered.map((p) => (
-                <div key={p.id} className="catalog-card">
+                <Link key={p.id} to={`/productos/${p.slug}`} className="catalog-card">
                   <img src={p.img} alt={p.name} />
                   <h4>{p.name}</h4>
                   <span className="catalog-price">${p.price.toFixed(2)}</span>
-                </div>
+                </Link>
               ))}
             </div>
           )}
