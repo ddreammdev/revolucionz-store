@@ -1,5 +1,5 @@
 import {Suspense, useRef, useEffect, useState} from 'react';
-import {Await, NavLink, useAsyncValue} from 'react-router';
+import {Await, NavLink, useAsyncValue, useLocation} from 'react-router';
 import {
   type CartViewPayload,
   useAnalytics,
@@ -85,6 +85,8 @@ export function HeaderMenu({
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
   const lenis = useLenis();
+  const location = useLocation();
+  const isProductPage = location.pathname.match(/\/productos\//);
 
   return (
     <nav className={className} role="navigation">
@@ -97,15 +99,17 @@ export function HeaderMenu({
       >
         Inicio
       </button>
-      <button
-        className="header-menu-item reset"
-        onClick={() => {
-          scrollToProductos(lenis);
-          close();
-        }}
-      >
-        Productos
-      </button>
+      {!isProductPage && (
+        <button
+          className="header-menu-item reset"
+          onClick={() => {
+            scrollToProductos(lenis);
+            close();
+          }}
+        >
+          Productos
+        </button>
+      )}
     </nav>
   );
 }
