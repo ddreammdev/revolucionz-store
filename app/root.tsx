@@ -14,7 +14,7 @@ import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 import appCss from './styles/app.css?url';
-import {PageLayout} from './components/PageLayout';
+import {PageLayout} from '~/components/layout';
 
 export type RootLoader = typeof loader;
 

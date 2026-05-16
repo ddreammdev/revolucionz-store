@@ -6,16 +6,16 @@ import type {
   FooterQuery,
   HeaderQuery,
 } from 'storefrontapi.generated';
-import {Aside} from '~/components/Aside';
-import {Footer} from '~/components/Footer';
-import {Header, HeaderMenu} from '~/components/Header';
+import {Aside} from '~/components/ui/Aside';
+import {Footer} from '~/components/layout/Footer';
+import {Header, HeaderMenu} from '~/components/layout/Header';
 import {SmoothScrollProvider} from '~/lib/smooth-scroll';
-import {CartMain} from '~/components/CartMain';
+import {CartMain} from '~/components/cart/CartMain';
 import {
   SEARCH_ENDPOINT,
   SearchFormPredictive,
-} from '~/components/SearchFormPredictive';
-import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
+} from '~/components/search/SearchFormPredictive';
+import {SearchResultsPredictive} from '~/components/search/SearchResultsPredictive';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;

@@ -1,6 +1,6 @@
 # Revolucionz Store
 
-Storefront headless de **Revolucionz**, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
+Storefront headless de **Revolucion Z**, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
 
 ## Stack principal
 

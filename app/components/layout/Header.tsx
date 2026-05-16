@@ -7,8 +7,8 @@ import {
 } from '@shopify/hydrogen';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
 import type Lenis from 'lenis';
-import {useAside} from '~/components/Aside';
-import {ThemeToggle} from '~/components/ThemeToggle';
+import {useAside} from '~/components/ui';
+import {ThemeToggle} from '~/components/ui';
 import {useLenis} from '~/lib/smooth-scroll';
 import logoSvg from 'app/assets/logo-revolucionz.svg';
 import {Search, ShoppingCart, User, Menu} from 'lucide-react';
@@ -38,7 +38,15 @@ export function Header({
     if (!l) return;
     const VELOCITY_THRESHOLD = 15;
 
-    function onLenisScroll({scroll, velocity, direction}: {scroll: number; velocity: number; direction: number}) {
+    function onLenisScroll({
+      scroll,
+      velocity,
+      direction,
+    }: {
+      scroll: number;
+      velocity: number;
+      direction: number;
+    }) {
       if (direction === 1 && scroll > 80 && velocity > VELOCITY_THRESHOLD) {
         setHidden(true);
       } else if (direction === -1) {

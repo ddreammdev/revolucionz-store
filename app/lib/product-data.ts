@@ -46,8 +46,8 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: 'Colágeno',
-    slug: 'colageno',
+    name: 'Revitalizate',
+    slug: 'revitalizate',
     img: imgColageno,
     price: 34.99,
     category: 'Salud',
@@ -126,8 +126,8 @@ export const products: Product[] = [
   },
   {
     id: 6,
-    name: 'Glutation Doypack',
-    slug: 'glutation-doypack',
+    name: 'Glutation-Z Doypack',
+    slug: 'glutation-z-doypack',
     img: imgGlutationDp,
     price: 39.99,
     category: 'Salud',
@@ -146,8 +146,8 @@ export const products: Product[] = [
   },
   {
     id: 7,
-    name: 'Glutation',
-    slug: 'glutation',
+    name: 'Glutation-Z',
+    slug: 'glutation-z',
     img: imgGlutation,
     price: 37.99,
     category: 'Salud',

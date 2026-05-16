@@ -1,6 +1,6 @@
-import {Carousel} from '~/components/Carousel';
-import {ProductCatalog} from '~/components/ProductCatalog';
-import {HeroBackground} from '~/components/HeroBackground';
+import {Carousel} from '~/components/ui';
+import {ProductCatalog} from '~/components/product';
+import {HeroBackground} from '~/components/layout';
 import {useLenis} from '~/lib/smooth-scroll';
 
 export const meta: Route.MetaFunction = () => {

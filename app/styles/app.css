@@ -81,7 +81,7 @@
 
 .dark {
   --page-bg: #0a0f0f;
-  --page-bg-secondary: #0a0f0f;
+  --page-bg-secondary: #0a0a0a;
   --page-text: #e2e8f0;
   --page-text-secondary: #8896ab;
   --page-border: #1e293b;
@@ -265,8 +265,8 @@ html.theme-ready .catalog-card {
   transition:
     background-color 1s ease,
     border-color 1s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    box-shadow 0.5s ease,
+    transform 0.5s ease;
 }
 
 html.theme-ready .card {
@@ -294,32 +294,6 @@ html.theme-ready .theme-toggle {
   transition:
     border-color 1s ease,
     background-color 1s ease;
-}
-
-html.theme-ready .catalog-filters {
-  transition:
-    background-color 0.5s ease,
-    border-color 0.5s ease;
-}
-
-html.theme-ready .catalog-filters-header {
-  transition: border-color 0.5s ease;
-}
-
-html.theme-ready .catalog-checkbox {
-  transition: color 0.2s;
-}
-
-html.theme-ready .catalog-card {
-  transition:
-    background-color 0.5s ease,
-    border-color 0.5s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-html.theme-ready .card {
-  transition: border-color 0.5s ease;
 }
 
 html.theme-ready .hero {
@@ -378,6 +352,16 @@ html.theme-ready .blog-article-image img {
 html.theme-ready .collection-item,
 html.theme-ready .product-item {
   transition: box-shadow 0.2s;
+}
+
+html.theme-ready .product-view-meta {
+    transition:
+    background-color 1s ease;
+}
+
+html.theme-ready .product-view-qty-btn {
+    transition:
+    background-color 1s ease;
 }
 
 html.theme-ready .theme-toggle {
@@ -1646,7 +1630,7 @@ aside p {
 }
 
 .catalog-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 16px rgba(62, 240, 190, 0.2);
   transform: translateY(-2px);
 }
 

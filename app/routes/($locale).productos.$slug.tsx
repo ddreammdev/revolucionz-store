@@ -1,5 +1,5 @@
 ﻿import {getProductBySlug} from '~/lib/product-data';
-import {ProductView} from '~/components/ProductView';
+import {ProductView} from '~/components/product';
 
 export function meta({data}: {data: Record<string, unknown> | undefined}) {
   const product = data?.product as {name: string} | undefined;
