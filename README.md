@@ -1,8 +1,18 @@
-# Revolucion Z Store
+# Revolution Z Store
 
-Storefront headless de **Revolucion Z**, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
+Revolucion Z Store, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
 
-## Stack principal
+## ✨ Características
+
+- **Diseño Moderno** - Interfaz visualmente atractiva con soporte para tema claro/oscuro
+- **Navegación Intuitiva** - Sidebars interactivos para menú, carrito y cuenta de usuario
+- **Catálogo de Productos** - Exhibición de suplementos con precios, descripciones y beneficios
+- **Carrito de Compras** - Sistema de gestión del carrito de compras
+- **Búsqueda Predictiva** - Búsqueda inteligente de productos
+- **Experiencia Smooth** - Desplazamiento fluido con Lenis
+- **Totalmente Responsivo** - Optimizado para dispositivos móviles y escritorio
+
+## 🛠️ Tecnologías
 
 - Shopify Hydrogen
 - Remix / React Router
@@ -11,48 +21,14 @@ Storefront headless de **Revolucion Z**, construido sobre Shopify Hydrogen para 
 - Vite
 - Tailwind CSS
 
-## Requisitos
+## 🚀 Requisitos
 
 - Node.js `^22 || ^24`
 - pnpm (recomendado) o npm
 - Shopify CLI configurado para tu tienda
 
-## Instalación
+## 📄 Licencia
 
-```bash
-pnpm install
-```
+MIT License
 
-## Desarrollo local
-
-```bash
-pnpm dev
-```
-
-## Build de producción
-
-```bash
-pnpm build
-```
-
-## Scripts útiles
-
-- `pnpm dev`: inicia entorno local con codegen.
-- `pnpm build`: compila para producción.
-- `pnpm preview`: levanta el build local.
-- `pnpm lint`: ejecuta linting.
-- `pnpm typecheck`: valida tipos de TypeScript.
-- `pnpm codegen`: ejecuta codegen de Shopify + typegen de rutas.
-
-## Estructura general
-
-- `app/components`: componentes UI reutilizables.
-- `app/routes`: rutas y páginas del storefront.
-- `app/assets`: recursos visuales (logos, carruseles, productos).
-- `app/styles`: estilos globales.
-
-## Notas
-
-- Este proyecto usa flujo headless con Shopify, por lo que requiere credenciales y configuración de entorno para conectarse al storefront.
-- Para Account API (`/account`), sigue la guía oficial de Hydrogen:
-  <https://shopify.dev/docs/custom-storefronts/building-with-the-customer-account-api/hydrogen#step-1-set-up-a-public-domain-for-local-development>
+---
