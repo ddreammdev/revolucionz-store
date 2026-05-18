@@ -1,6 +1,6 @@
-# Revolution Z Store
+# Revolution Z
 
-Revolucion Z Store, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
+Revolucion Z, construido sobre Shopify Hydrogen para ofrecer una experiencia moderna, rápida y optimizada para catálogo, búsqueda y compra.
 
 ## ✨ Características
 
